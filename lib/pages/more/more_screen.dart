@@ -255,14 +255,6 @@ class BottomNavBar extends StatelessWidget {
           label: 'Blog',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.message),
-          label: 'Message',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.notifications),
-          label: 'Notifications',
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.more_horiz),
           label: 'More',
         ),

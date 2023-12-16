@@ -32,12 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
         );
         break;
       case 2:
-      
-        break;
-      case 3:
-        // Handle Notifications page navigation
-        break;
-      case 4:
         // Handle More page navigation
         Navigator.push(
           context,
@@ -139,8 +133,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                   break;
                 case 2:
-                  break;
-                case 4:
                   // TODO: Add logic for More onPressed
                   Navigator.push(
                     context,
@@ -158,14 +150,6 @@ class _HomeScreenState extends State<HomeScreen> {
             BottomNavigationBarItem(
               icon: Icon(Icons.article_outlined),
               label: 'Blog',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.phone),
-              label: 'Call',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notifications',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.more_horiz),

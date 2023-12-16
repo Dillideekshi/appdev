@@ -80,12 +80,6 @@ class _HomePageState extends State<HomePage> {
         // Handle Members page navigation
         break;
       case 2:
-        // Handle Message page navigation
-        break;
-      case 3:
-        // Handle Notifications page navigation
-        break;
-      case 4:
         // Handle More page navigation
         break;
     }
@@ -243,7 +237,7 @@ class _HomePageState extends State<HomePage> {
   onTap: (index) {
   setState(() {
     _currentIndex = index;
-    if (index == 4) {
+    if (index == 2) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => MoreScreen()),
@@ -266,14 +260,6 @@ class _HomePageState extends State<HomePage> {
     BottomNavigationBarItem(
       icon: Icon(Icons.article_outlined),
       label: 'Blog',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.phone),
-      label: 'Call',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.notifications),
-      label: 'Notifications',
     ),
     BottomNavigationBarItem(
       icon: Icon(Icons.more_horiz),
