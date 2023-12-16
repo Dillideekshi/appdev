@@ -1,15 +1,13 @@
-import 'package:appdev/pages/auth/auth.dart';
-import 'package:appdev/pages/auth/forgot_password.dart';
+import 'package:appdev/helper/helper_function.dart';
 import 'package:appdev/pages/auth/register_page.dart';
 import 'package:appdev/pages/home_page.dart';
+import 'package:appdev/service/auth_service.dart';
+import 'package:appdev/service/database_service.dart';
 import 'package:appdev/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import '../../helper/helper_function.dart';
-import '../../service/auth_service.dart';
-import '../../service/database_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -43,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         const Text(
-                          "Campus Crafters",
+                          "Groupie",
                           style: TextStyle(
                               fontSize: 40, fontWeight: FontWeight.bold),
                         ),
@@ -117,70 +115,6 @@ class _LoginPageState extends State<LoginPage> {
                             },
                           ),
                         ),
-
-SizedBox(height: 120.0,),
-            Container(
-              height: 200,
-              width: 200,
-              child: Image.asset("images/flutter.jpeg", fit: BoxFit.cover,),
-            ),
-             SizedBox(height: 100.0,),
-            GestureDetector(
-              onTap: () {
-                AuthMethods().signInWithGoogle(context);
-              },
-              child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 10.0),
-                child: Material(
-                  elevation: 10.0,
-                  borderRadius: BorderRadius.circular(30),
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
-                    decoration: BoxDecoration(
-                        color: Color(0xFFf58634),
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Row(
-                      children: [
-                        Container(
-                            height: 40,
-                            width: 40,
-                            child: Image.asset("images/google.png")),
-                        SizedBox(
-                          width: 30.0,
-                        ),
-                        Center(
-                          child: Text(
-                            "Sign in with Google",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-
-
-
-                        const SizedBox(
-              height: 20.0,
-            ),
-            GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ForgotPasswordScreen()));
-              },
-              child: const Text("Forgot Password?",
-                  style: TextStyle(
-                      color: Color(0xFF8c8e98),
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.w500)),
-            ),
                         const SizedBox(
                           height: 10,
                         ),

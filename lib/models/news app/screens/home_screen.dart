@@ -1,178 +1,179 @@
-import 'package:appdev/models/article_model.dart';
-import 'package:appdev/models/news%20app/screens/article_screen.dart';
-import 'package:appdev/models/news%20app/widgets/bottom_nav_bar.dart';
-import 'package:appdev/models/news%20app/widgets/custom_tag.dart';
-import 'package:appdev/models/news%20app/widgets/image_container.dart';
+import 'package:appdev/pages/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:appdev/models/news%20app/screens/general_screen.dart';
+import 'package:appdev/models/news%20app/screens/health_screen.dart';
+import 'package:appdev/models/news%20app/screens/science_screen.dart';
+import 'package:appdev/models/news%20app/screens/technology_screen.dart';
+import 'package:appdev/models/news%20app/screens/top_headlines_screen.dart';
+import 'package:appdev/pages/more/more_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  static const routeName = '/';
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  void navigateToPage(int index) {
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+        break;
+      case 1:
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
+        break;
+      case 2:
+        // Handle Call page navigation
+        break;
+      case 3:
+        // Handle Notifications page navigation
+        break;
+      case 4:
+        // Handle More page navigation
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => MoreScreen()),
+        );
+        break;
+    }
+  }
+
+  void popUpDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Popup Dialog"),
+          content: Text("This is a popup dialog."),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Close"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    Article article = Article.articles[0];
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.menu,
-            color: Colors.white,
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text(
+            "CampusCraftors",
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          bottom: TabBar(
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(35),
+              color: Color.fromARGB(255, 11, 173, 242),
+            ),
+            isScrollable: true,
+            tabs: const [
+              Tab(text: "General"),
+              Tab(text: "Health"),
+              Tab(text: "Technology"),
+              Tab(text: "Science"),
+              Tab(text: "Top headlines"),
+            ],
           ),
         ),
-      ),
-      bottomNavigationBar: const BottomNavBar(index: 0),
-      extendBodyBehindAppBar: true,
-      body: ListView(padding: EdgeInsets.zero, children: [
-        _NewsOfTheDay(article: article),
-        _BreakingNews(articles: Article.articles),
-      ]),
-    );
-  }
-}
-
-class _BreakingNews extends StatelessWidget {
-  const _BreakingNews({
-    Key? key,
-    required this.articles,
-  }) : super(key: key);
-
-  final List<Article> articles;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Breaking News',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .copyWith(fontWeight: FontWeight.bold),
-              ),
-              Text('More', style: Theme.of(context).textTheme.bodyLarge),
-            ],
+        body: const TabBarView(
+          children: [
+            GeneralScreen(),
+            HealthScreen(),
+            TechnologyScreen(),
+            ScienceScreen(),
+            TopHeadlinesScreen(),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            popUpDialog(context);
+          },
+          elevation: 0,
+          backgroundColor: Theme.of(context).primaryColor,
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 30,
           ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 250,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: articles.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  margin: const EdgeInsets.only(right: 10),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        ArticleScreen.routeName,
-                        arguments: articles[index],
-                      );
-                    },
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ImageContainer(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          imageUrl: articles[index].imageUrl,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          articles[index].title,
-                          maxLines: 2,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                  fontWeight: FontWeight.bold, height: 1.5),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                            '${DateTime.now().difference(articles[index].createdAt).inHours} hours ago',
-                            style: Theme.of(context).textTheme.bodySmall),
-                        const SizedBox(height: 5),
-                        Text('by ${articles[index].author}',
-                            style: Theme.of(context).textTheme.bodySmall),
-                      ],
-                    ),
-                  ),
-                );
-              },
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _currentIndex,
+          selectedItemColor: Color.fromARGB(255, 13, 200, 225),
+          unselectedItemColor: Colors.grey,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+              navigateToPage(index);
+              // Placeholder onPressed actions
+              switch (index) {
+                case 0:
+                 Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                  break;
+                case 1:
+                  // TODO: Add logic for Blog onPressed
+                  break;
+                case 4:
+                  // TODO: Add logic for More onPressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MoreScreen()),
+                  );
+                  break;
+              }
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _NewsOfTheDay extends StatelessWidget {
-  const _NewsOfTheDay({
-    Key? key,
-    required this.article,
-  }) : super(key: key);
-
-  final Article article;
-
-  @override
-  Widget build(BuildContext context) {
-    return ImageContainer(
-      height: MediaQuery.of(context).size.height * 0.45,
-      width: double.infinity,
-      padding: const EdgeInsets.all(20.0),
-      imageUrl: article.imageUrl,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomTag(
-            backgroundColor: Colors.grey.withAlpha(150),
-            children: [
-              Text(
-                'News of the Day',
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Colors.white,
-                    ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Text(
-            article.title,
-            style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                fontWeight: FontWeight.bold, height: 1.25, color: Colors.white),
-          ),
-          TextButton(
-            onPressed: () {},
-            style: TextButton.styleFrom(padding: EdgeInsets.zero),
-            child: Row(
-              children: [
-                Text(
-                  'Learn More',
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                        color: Colors.white,
-                      ),
-                ),
-                const SizedBox(width: 10),
-                const Icon(
-                  Icons.arrow_right_alt,
-                  color: Colors.white,
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.article_outlined),
+              label: 'Blog',
             ),
-          ),
-        ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.phone),
+              label: 'Call',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications),
+              label: 'Notifications',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.more_horiz),
+              label: 'More',
+            ),
+          ],
+        ),
       ),
     );
   }

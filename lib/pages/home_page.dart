@@ -244,7 +244,6 @@ class _HomePageState extends State<HomePage> {
   setState(() {
     _currentIndex = index;
     if (index == 4) {
-      // Check if the "More" tab is pressed
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => MoreScreen()),
@@ -255,6 +254,7 @@ class _HomePageState extends State<HomePage> {
         MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     }
+    
   });
 },
 

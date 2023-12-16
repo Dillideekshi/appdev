@@ -1,5 +1,5 @@
 import 'package:appdev/firebase_options.dart';
-import 'package:appdev/pages/auth/signin.dart';
+import 'package:appdev/pages/auth/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'helper/helper_function.dart';
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           primaryColor: Constants().primaryColor,
           scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
-      home: _isSignedIn ? const HomePage() : const SignIn(),
+      home: _isSignedIn ? const HomePage() : const LoginPage(),
     );
   }
 }
