@@ -3,8 +3,8 @@ import 'package:appdev/models/call_app/pages/new_meeting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class CallHomePage extends StatelessWidget {
+  const CallHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
