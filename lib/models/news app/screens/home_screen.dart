@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         );
         break;
       case 2:
-        // Handle Call page navigation
+      
         break;
       case 3:
         // Handle Notifications page navigation
@@ -138,8 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     MaterialPageRoute(builder: (context) => HomePage()),
                   );
                   break;
-                case 1:
-                  // TODO: Add logic for Blog onPressed
+                case 2:
                   break;
                 case 4:
                   // TODO: Add logic for More onPressed

@@ -1,4 +1,3 @@
-import 'package:appdev/models/call_app/pages/homepage.dart';
 import 'package:appdev/models/news%20app/screens/home_screen.dart';
 import 'package:appdev/pages/more/more_screen.dart';
 import 'package:flutter/material.dart';
@@ -253,12 +252,6 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    }
-    else if (index == 1) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CallHomePage()),
       );
     }
     
