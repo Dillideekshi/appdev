@@ -28,8 +28,10 @@ Privacy and Security: Your data is our priority. Enjoy a secure space for meanin
 Inspire Creativity: Provide a canvas for students to express their creativity through articles, discussions, and events.
 Enhance Communication: Bridge gaps, foster connections, and build a sense of community within the college.
 
-
+<br/>
 App developed by 
+Deepak(21bds015
+0
 Kirti (@KOLAKIRTI)-21bds032
 Manish Kumar(@mk7562)-21bds036
 Dillibabu (@Dillideekshi)-21bds042
