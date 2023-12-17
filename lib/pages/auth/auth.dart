@@ -4,7 +4,6 @@ import 'package:appdev/pages/auth/database.dart';
 import 'package:appdev/pages/auth/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:appdev/service/auth_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthMethods {
@@ -41,7 +40,7 @@ class AuthMethods {
       };
       DatabaseMethods().addUser(userDetails.uid, userInfoMap).then((value) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => const Home()));
       });
     }
   }
